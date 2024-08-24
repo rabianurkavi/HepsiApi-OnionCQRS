@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HepsiApi.Application.DTOs.Brand;
+using HepsiApi.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ namespace HepsiApi.Application.Features.Products.Queries.GetAllProducts
         public int BrandId { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; } //indirim uygulamak için 
+        public BrandDto Brand { get; set; }
 
     }
 }
