@@ -23,6 +23,7 @@ namespace HepsiApi.Persistence.Context
         DbSet<Category> Categories { get; set; }
         DbSet<Detail> Details { get; set; }
         DbSet<Product>  Products { get; set; }
+        DbSet<ProductCategory>  ProductCategories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

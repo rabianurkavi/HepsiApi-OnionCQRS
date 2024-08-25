@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HepsiApi.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class mig_update : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -94,24 +94,24 @@ namespace HepsiApi.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryProduct",
+                name: "ProductCategories",
                 columns: table => new
                 {
-                    CategoriesId = table.Column<int>(type: "int", nullable: false),
-                    ProductsId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryProduct", x => new { x.CategoriesId, x.ProductsId });
+                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
+                        name: "FK_ProductCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductCategories_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -122,9 +122,9 @@ namespace HepsiApi.Persistence.Migrations
                 columns: new[] { "Id", "CreateDate", "IsDeleted", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9013), false, "Industrial" },
-                    { 2, new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9226), false, "Tools, Outdoors & Grocery" },
-                    { 3, new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9242), true, "Music, Kids & Garden" }
+                    { 1, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1436), false, "Toys & Books" },
+                    { 2, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1455), false, "Sports, Beauty & Books" },
+                    { 3, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1460), true, "Movies" }
                 });
 
             migrationBuilder.InsertData(
@@ -132,10 +132,10 @@ namespace HepsiApi.Persistence.Migrations
                 columns: new[] { "Id", "CreateDate", "IsDeleted", "Name", "ParentId", "Priorty" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(970), false, "Elektrik", 0, 1 },
-                    { 2, new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(972), false, "Moda", 0, 2 },
-                    { 3, new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(974), false, "Bilgisayar", 1, 1 },
-                    { 4, new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(975), false, "Kadın", 2, 1 }
+                    { 1, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2945), false, "Elektrik", 0, 1 },
+                    { 2, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2947), false, "Moda", 0, 2 },
+                    { 3, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2949), false, "Bilgisayar", 1, 1 },
+                    { 4, new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2952), false, "Kadın", 2, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -143,19 +143,19 @@ namespace HepsiApi.Persistence.Migrations
                 columns: new[] { "Id", "BrandId", "CreateDate", "Description", "Discount", "IsDeleted", "Price", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7727), "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", 9.014250015477760m, false, 819.76m, "Unbranded Steel Tuna" },
-                    { 2, 3, new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7748), "The Football Is Good For Training And Recreational Purposes", 9.664493229531690m, false, 546.64m, "Handmade Metal Cheese" },
-                    { 3, 3, new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7766), "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", 8.295429583895860m, false, 719.90m, "Sleek Fresh Fish" }
+                    { 1, 1, new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5743), "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support", 2.079916086928760m, false, 81.61m, "Gorgeous Granite Computer" },
+                    { 2, 3, new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5764), "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", 4.716379765027930m, false, 50.80m, "Ergonomic Metal Gloves" },
+                    { 3, 3, new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5784), "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", 6.943323067014640m, false, 421.72m, "Unbranded Frozen Chair" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryProduct_ProductsId",
-                table: "CategoryProduct",
-                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Details_CategoryId",
                 table: "Details",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCategories_CategoryId",
+                table: "ProductCategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -168,16 +168,16 @@ namespace HepsiApi.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CategoryProduct");
-
-            migrationBuilder.DropTable(
                 name: "Details");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Brands");

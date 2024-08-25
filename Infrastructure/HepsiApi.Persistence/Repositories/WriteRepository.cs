@@ -39,8 +39,9 @@ namespace HepsiApi.Persistence.Repositories
             await Task.Run(()=>Table.Remove(entity));
         }
 
-
-
-
+        public async Task DeleteRangeAsync(IList<T> entities)
+        {
+            await Task.Run(() => Table.RemoveRange(entities));
+        }
     }
 }

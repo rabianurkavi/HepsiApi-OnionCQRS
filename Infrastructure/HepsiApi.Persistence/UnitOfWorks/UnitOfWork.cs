@@ -20,7 +20,6 @@ namespace HepsiApi.Persistence.UnitOfWorks
             this.dbContext = dbContext;
         }
 
-        public AppDbContext AppDbContext { get; }
 
         public async ValueTask DisposeAsync() => await dbContext.DisposeAsync();
         public async Task<int> SaveAsync() => await dbContext.SaveChangesAsync();
