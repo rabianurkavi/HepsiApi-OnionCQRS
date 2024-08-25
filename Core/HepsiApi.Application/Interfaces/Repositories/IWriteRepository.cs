@@ -18,6 +18,7 @@ namespace HepsiApi.Application.Interfaces.Repositories
         Task<T> UpdateAsync(T entity);
         //id alsaydık eğer id si integer değilse T entity olarak alalım şimdilik
         Task DeleteAsync(T entity);
+        Task DeleteRangeAsync(IList<T> entities);
 
 
     }

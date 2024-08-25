@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HepsiApi.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240810133426_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240825084809_mig_update")]
+    partial class mig_update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace HepsiApi.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CategoryProduct", b =>
-                {
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("CategoryProduct");
-                });
 
             modelBuilder.Entity("HepsiApi.Domain.Entities.Brand", b =>
                 {
@@ -67,23 +52,23 @@ namespace HepsiApi.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9013),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1436),
                             IsDeleted = false,
-                            Name = "Industrial"
+                            Name = "Toys & Books"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9226),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1455),
                             IsDeleted = false,
-                            Name = "Tools, Outdoors & Grocery"
+                            Name = "Sports, Beauty & Books"
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 90, DateTimeKind.Local).AddTicks(9242),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(1460),
                             IsDeleted = true,
-                            Name = "Music, Kids & Garden"
+                            Name = "Movies"
                         });
                 });
 
@@ -119,7 +104,7 @@ namespace HepsiApi.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(970),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2945),
                             IsDeleted = false,
                             Name = "Elektrik",
                             ParentId = 0,
@@ -128,7 +113,7 @@ namespace HepsiApi.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(972),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2947),
                             IsDeleted = false,
                             Name = "Moda",
                             ParentId = 0,
@@ -137,7 +122,7 @@ namespace HepsiApi.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(974),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2949),
                             IsDeleted = false,
                             Name = "Bilgisayar",
                             ParentId = 1,
@@ -146,7 +131,7 @@ namespace HepsiApi.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 91, DateTimeKind.Local).AddTicks(975),
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 572, DateTimeKind.Local).AddTicks(2952),
                             IsDeleted = false,
                             Name = "Kadın",
                             ParentId = 2,
@@ -228,50 +213,50 @@ namespace HepsiApi.Persistence.Migrations
                         {
                             Id = 1,
                             BrandId = 1,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7727),
-                            Description = "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
-                            Discount = 9.014250015477760m,
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5743),
+                            Description = "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+                            Discount = 2.079916086928760m,
                             IsDeleted = false,
-                            Price = 819.76m,
-                            Title = "Unbranded Steel Tuna"
+                            Price = 81.61m,
+                            Title = "Gorgeous Granite Computer"
                         },
                         new
                         {
                             Id = 2,
                             BrandId = 3,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7748),
-                            Description = "The Football Is Good For Training And Recreational Purposes",
-                            Discount = 9.664493229531690m,
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5764),
+                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+                            Discount = 4.716379765027930m,
                             IsDeleted = false,
-                            Price = 546.64m,
-                            Title = "Handmade Metal Cheese"
+                            Price = 50.80m,
+                            Title = "Ergonomic Metal Gloves"
                         },
                         new
                         {
                             Id = 3,
                             BrandId = 3,
-                            CreateDate = new DateTime(2024, 8, 10, 16, 34, 26, 93, DateTimeKind.Local).AddTicks(7766),
-                            Description = "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
-                            Discount = 8.295429583895860m,
+                            CreateDate = new DateTime(2024, 8, 25, 11, 48, 9, 575, DateTimeKind.Local).AddTicks(5784),
+                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Discount = 6.943323067014640m,
                             IsDeleted = false,
-                            Price = 719.90m,
-                            Title = "Sleek Fresh Fish"
+                            Price = 421.72m,
+                            Title = "Unbranded Frozen Chair"
                         });
                 });
 
-            modelBuilder.Entity("CategoryProduct", b =>
+            modelBuilder.Entity("HepsiApi.Domain.Entities.ProductCategory", b =>
                 {
-                    b.HasOne("HepsiApi.Domain.Entities.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.HasOne("HepsiApi.Domain.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("HepsiApi.Domain.Entities.Detail", b =>
@@ -296,9 +281,35 @@ namespace HepsiApi.Persistence.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("HepsiApi.Domain.Entities.ProductCategory", b =>
+                {
+                    b.HasOne("HepsiApi.Domain.Entities.Category", "Category")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HepsiApi.Domain.Entities.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("HepsiApi.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Details");
+
+                    b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("HepsiApi.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }
