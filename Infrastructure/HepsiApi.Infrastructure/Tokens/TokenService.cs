@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,14 +58,38 @@ namespace HepsiApi.Infrastructure.Tokens
             return token;
         }
 
+        //tokenlerımızın süresini 15 er dk ama refreshtoken 30 ar token olacak böyle olduğu zaman mesela token oluşturduk login olduktan sonra refsh ve acces token dönüyor
+        //access tokenımın süresi bittikten sonra refresh tokenımın süresi 60 gün boyunca kalıyor refreshtoken endpointime gittim bir istek daha yapmış oldum.
+        //ve tekrardan refresh token gelmiş olacak sürekli access ve refresh tokenimiz yenilecek olacak her token aldığımızda kendisi değişecek ama tarihi değişmeyecek
+        //refresh tokenımla beraber tekrar giriş yapabiliyorum logine düşmeden
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[64];
+            using var rng= RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
-
-        public ClaimsPrincipal GetPrincipalFromExpiredToken()
+        //tokena istek attıktan sonra son tokenıma erişiyor olmam lazım buna göre bu son access tokenın süresinin dolup dolmadığını kontrol etmem gerekiyor
+        public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
         {
-            throw new NotImplementedException();
+            TokenValidationParameters tokenValidationParameters = new()
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = false,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.Secret)),
+                ValidateLifetime = false,
+            };
+
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            if (securityToken is not JwtSecurityToken jwtSecurityToken 
+                || !jwtSecurityToken.Header.Alg
+                .Equals(SecurityAlgorithms.HmacSha256,
+                StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Token bulunamadı.");
+
+            return principal;
         }
     }
 }

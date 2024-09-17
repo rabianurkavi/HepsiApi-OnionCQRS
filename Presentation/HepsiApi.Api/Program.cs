@@ -3,6 +3,7 @@ using HepsiApi.Application;
 using HepsiApi.Mapper;
 using HepsiApi.Application.Exceptions;
 using HepsiApi.Infrastructure;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,34 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCustomMapper();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",new OpenApiInfo { Title= "Hepsi API" ,Version="v1" ,Description="Hepsi APÝ swagger client."});
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "'Bearer' yazýp boþluk býraktýktan sonra Token'ý girebilirsiniz \r\n\r\n Örneðin \"Bearer vr!6o%iq(!6dkflpkv5)(yx!oio!sl=0@z^6mzwu6m-gxo$yei "
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference=new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 var app = builder.Build();
 
