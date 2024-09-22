@@ -33,6 +33,7 @@ namespace HepsiApi.Application.Features.Products.Queries.GetAllProducts
 
 
             throw new Exception("hata mesajı");
+            
 
         }
     }
